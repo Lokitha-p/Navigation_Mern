@@ -1,184 +1,481 @@
-.counter {
-  font-size: 16px;
-  padding: 5px 10px;
-  border-radius: 5px;
-  color: var(--accent);
-  background: var(--accent-bg);
-  border: 2px solid transparent;
-  transition: border-color 0.3s;
-  margin-bottom: 24px;
-
-  &:hover {
-    border-color: var(--accent-border);
-  }
-  &:focus-visible {
-    outline: 2px solid var(--accent);
-    outline-offset: 2px;
-  }
-}
-
-.hero {
-  position: relative;
-
-  .base,
-  .framework,
-  .vite {
-    inset-inline: 0;
-    margin: 0 auto;
-  }
-
-  .base {
-    width: 170px;
-    position: relative;
-    z-index: 0;
-  }
-
-  .framework,
-  .vite {
-    position: absolute;
-  }
-
-  .framework {
-    z-index: 1;
-    top: 34px;
-    height: 28px;
-    transform: perspective(2000px) rotateZ(300deg) rotateX(44deg) rotateY(39deg)
-      scale(1.4);
-  }
-
-  .vite {
-    z-index: 0;
-    top: 107px;
-    height: 26px;
-    width: auto;
-    transform: perspective(2000px) rotateZ(300deg) rotateX(40deg) rotateY(39deg)
-      scale(0.8);
-  }
-}
-
-#center {
+.app {
   display: flex;
   flex-direction: column;
-  gap: 25px;
-  place-content: center;
-  place-items: center;
-  flex-grow: 1;
-
-  @media (max-width: 1024px) {
-    padding: 32px 20px 24px;
-    gap: 18px;
-  }
-}
-
-#next-steps {
-  display: flex;
-  border-top: 1px solid var(--border);
-  text-align: left;
-
-  & > div {
-    flex: 1 1 0;
-    padding: 32px;
-    @media (max-width: 1024px) {
-      padding: 24px 20px;
-    }
-  }
-
-  .icon {
-    margin-bottom: 16px;
-    width: 22px;
-    height: 22px;
-  }
-
-  @media (max-width: 1024px) {
-    flex-direction: column;
-    text-align: center;
-  }
-}
-
-#docs {
-  border-right: 1px solid var(--border);
-
-  @media (max-width: 1024px) {
-    border-right: none;
-    border-bottom: 1px solid var(--border);
-  }
-}
-
-#next-steps ul {
-  list-style: none;
-  padding: 0;
-  display: flex;
-  gap: 8px;
-  margin: 32px 0 0;
-
-  .logo {
-    height: 18px;
-  }
-
-  a {
-    color: var(--text-h);
-    font-size: 16px;
-    border-radius: 6px;
-    background: var(--social-bg);
-    display: flex;
-    padding: 6px 12px;
-    align-items: center;
-    gap: 8px;
-    text-decoration: none;
-    transition: box-shadow 0.3s;
-
-    &:hover {
-      box-shadow: var(--shadow);
-    }
-    .button-icon {
-      height: 18px;
-      width: 18px;
-    }
-  }
-
-  @media (max-width: 1024px) {
-    margin-top: 20px;
-    flex-wrap: wrap;
-    justify-content: center;
-
-    li {
-      flex: 1 1 calc(50% - 8px);
-    }
-
-    a {
-      width: 100%;
-      justify-content: center;
-      box-sizing: border-box;
-    }
-  }
-}
-
-#spacer {
-  height: 88px;
-  border-top: 1px solid var(--border);
-  @media (max-width: 1024px) {
-    height: 48px;
-  }
-}
-
-.ticks {
-  position: relative;
+  gap: 20px;
+  padding: 24px 32px 40px;
   width: 100%;
+  min-height: 100vh;
+  box-sizing: border-box;
+}
 
-  &::before,
-  &::after {
-    content: '';
-    position: absolute;
-    top: -4.5px;
-    border: 5px solid transparent;
-  }
+.appHeader {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-start;
+  gap: 16px;
+  padding-bottom: 10px;
+  border-bottom: 1px solid rgba(0, 0, 0, 0.06);
+}
 
-  &::before {
-    left: 0;
-    border-left-color: var(--border);
+.appHeader .brand {
+  flex: 1;
+  text-align: left;
+}
+
+.appHeader h1 {
+  margin: 0 0 6px;
+  font-size: 28px;
+}
+
+.appHeader p {
+  margin: 0;
+  color: var(--text);
+  opacity: 0.9;
+}
+
+.navActions {
+  display: flex;
+  gap: 10px;
+  align-items: flex-start;
+}
+
+.navButton {
+  padding: 10px 16px;
+  border-radius: 12px;
+  border: 1px solid rgba(255, 255, 255, 0.3);
+  background: rgba(255, 255, 255, 0.75);
+  color: var(--text-h);
+  font-weight: 600;
+  cursor: pointer;
+  transition: transform 0.15s ease, box-shadow 0.15s ease;
+}
+
+.navButton:hover {
+  transform: translateY(-1px);
+  box-shadow: 0 10px 18px rgba(0, 0, 0, 0.15);
+}
+
+.navButton.active {
+  background: var(--accent);
+  color: #fff;
+  border-color: transparent;
+}
+
+.adminPage {
+  display: flex;
+  flex-direction: column;
+  gap: 18px;
+}
+
+.adminHeader {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 14px 16px;
+  background: rgba(170, 59, 255, 0.08);
+  border-radius: 14px;
+  border: 1px solid rgba(170, 59, 255, 0.25);
+}
+
+.adminHeader h2 {
+  margin: 0;
+}
+
+.adminGrid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+  gap: 18px;
+}
+
+.controls {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+  gap: 16px;
+  align-items: end;
+}
+
+.control {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+  text-align: left;
+}
+
+.control label {
+  font-weight: 600;
+  color: var(--text-h);
+}
+
+.control select,
+.controls input,
+.adminSection input,
+.adminSection select {
+  padding: 12px 14px;
+  border: 1px solid rgba(0, 0, 0, 0.12);
+  border-radius: 12px;
+  background: rgba(255, 255, 255, 0.95);
+  font-size: 1rem;
+  box-shadow: inset 0 1px 2px rgba(0, 0, 0, 0.06);
+  transition: border 0.15s ease, box-shadow 0.15s ease;
+}
+
+.control select:hover,
+.controls input:hover,
+.adminSection input:hover,
+.adminSection select:hover {
+  border-color: rgba(0, 0, 0, 0.2);
+}
+
+.control select:focus,
+.controls input:focus,
+.adminSection input:focus,
+.adminSection select:focus {
+  outline: none;
+  border-color: rgba(170, 59, 255, 0.75);
+  box-shadow: 0 0 0 4px rgba(170, 59, 255, 0.18);
+}
+
+.controls button {
+  width: 100%;
+  padding: 14px 16px;
+  border-radius: 14px;
+  border: none;
+  background: var(--accent);
+  color: #fff;
+  font-weight: 700;
+  cursor: pointer;
+  transition: transform 0.1s ease, box-shadow 0.1s ease;
+}
+
+.controls button:disabled {
+  opacity: 0.6;
+  cursor: not-allowed;
+}
+
+.controls button:not(:disabled):hover {
+  transform: translateY(-1px);
+  box-shadow: 0 6px 12px rgba(0, 0, 0, 0.12);
+}
+
+.controls input,
+.controls select {
+  padding: 10px 12px;
+  border: 1px solid var(--border);
+  border-radius: 8px;
+  background: var(--bg);
+  font-size: 1rem;
+}
+
+.status {
+  text-align: center;
+  margin-top: 12px;
+  color: var(--text-h);
+  font-weight: 600;
+}
+
+.error {
+  text-align: center;
+  margin-top: 12px;
+  color: #c62828;
+  font-weight: 600;
+}
+
+.admin {
+  margin-top: 20px;
+  padding: 16px;
+  border-radius: 14px;
+  background: rgba(170, 59, 255, 0.08);
+  border: 1px solid rgba(170, 59, 255, 0.2);
+}
+
+.adminToggle {
+  display: inline-block;
+  background: transparent;
+  border: 1px solid var(--accent);
+  color: var(--accent);
+  padding: 8px 14px;
+  border-radius: 10px;
+  cursor: pointer;
+  font-weight: 600;
+}
+
+.adminPanel {
+  margin-top: 16px;
+  display: grid;
+  gap: 18px;
+}
+
+.adminSection {
+  padding: 12px;
+  border-radius: 12px;
+  background: rgba(255, 255, 255, 0.7);
+  border: 1px solid var(--border);
+}
+
+.adminSection h2 {
+  margin: 0 0 10px;
+}
+
+.formRow {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+  gap: 12px;
+  margin-bottom: 12px;
+}
+
+.checkboxLabel {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  font-size: 0.95rem;
+}
+
+.adminSection button {
+  padding: 10px 14px;
+  border-radius: 10px;
+  border: none;
+  background: var(--accent);
+  color: #fff;
+  cursor: pointer;
+}
+
+.adminSection button:hover {
+  transform: translateY(-1px);
+  box-shadow: 0 6px 12px rgba(0, 0, 0, 0.12);
+}
+
+.map {
+  border-radius: 18px;
+  overflow: hidden;
+  box-shadow: 0 18px 40px rgba(0, 0, 0, 0.12);
+  height: 65vh;
+  min-height: 480px;
+  position: relative;
+  animation: fadeIn 300ms ease;
+  border: 1px solid rgba(0, 0, 0, 0.08);
+  background: rgba(255, 255, 255, 0.9);
+}
+
+.leaflet-container {
+  transition: transform 0.3s ease;
+}
+
+.leaflet-container:hover {
+  transform: translateY(-4px);
+}
+
+.animated-route {
+  stroke-linecap: round;
+  filter: drop-shadow(0px 0px 10px rgba(52, 179, 255, 0.6));
+}
+
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+    transform: translateY(8px);
   }
-  &::after {
-    right: 0;
-    border-right-color: var(--border);
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+.footer {
+  font-size: 0.9rem;
+  color: var(--text);
+  text-align: center;
+}
+
+.directions {
+  margin-top: 18px;
+  padding: 14px 16px;
+  border-radius: 14px;
+  background: rgba(170, 59, 255, 0.08);
+  border: 1px solid rgba(170, 59, 255, 0.2);
+}
+
+.directions h2 {
+  margin: 0 0 10px;
+}
+
+.directions ol {
+  margin: 0;
+  padding-left: 18px;
+}
+
+.directions li {
+  margin-bottom: 6px;
+  line-height: 1.3;
+}
+
+.directions span {
+  color: var(--text);
+  opacity: 0.8;
+  margin-left: 6px;
+}
+
+/* Custom marker styles */
+.custom-marker {
+  width: 46px;
+  height: 46px;
+  border-radius: 50%;
+  display: grid;
+  place-items: center;
+  box-shadow: 0 4px 18px rgba(0, 0, 0, 0.25);
+  border: 2px solid rgba(255, 255, 255, 0.9);
+  background-color: rgba(255, 255, 255, 0.92);
+  position: relative;
+  overflow: hidden;
+}
+
+.custom-marker::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  opacity: 0.3;
+  filter: blur(0.5px);
+}
+
+.marker-content {
+  position: relative;
+  z-index: 2;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 100%;
+  height: 100%;
+}
+
+.marker-content::after {
+  content: "";
+  font-size: 18px;
+  line-height: 1;
+}
+
+.source-marker .marker-content::after {
+  content: "📍";
+}
+
+.dest-marker .marker-content::after {
+  content: "🎯";
+}
+
+.building-marker .marker-content::after {
+  content: "🏛️";
+}
+
+.lab-marker .marker-content::after {
+  content: "🔬";
+}
+
+.office-marker .marker-content::after {
+  content: "🧑‍💼";
+}
+
+.facility-marker .marker-content::after {
+  content: "🏪";
+}
+
+.common-marker .marker-content::after {
+  content: "🧭";
+}
+
+.landing-marker .marker-content::after {
+  content: "✈️";
+}
+
+.source-marker {
+  background-color: rgba(72, 180, 97, 0.95);
+  animation: pulse 1.6s infinite;
+}
+
+.dest-marker {
+  background-color: rgba(239, 83, 80, 0.95);
+  animation: pulse 1.6s infinite;
+}
+
+.building-marker {
+  background-color: rgba(98, 88, 233, 0.9);
+}
+
+.facility-marker {
+  background-color: rgba(80, 170, 240, 0.9);
+}
+
+.common-marker {
+  background-color: rgba(90, 200, 170, 0.95);
+}
+
+.landing-marker {
+  background-color: rgba(255, 170, 85, 0.9);
+}
+
+.lab-marker {
+  background-color: rgba(66, 133, 244, 0.9);
+}
+
+.admin-marker {
+  background-color: rgba(244, 180, 0, 0.92);
+}
+
+.library-marker {
+  background-color: rgba(255, 125, 95, 0.92);
+}
+
+.cafeteria-marker {
+  background-color: rgba(255, 90, 180, 0.92);
+}
+
+.dorm-marker {
+  background-color: rgba(90, 200, 170, 0.92);
+}
+
+.office-marker {
+  background-color: rgba(135, 130, 248, 0.92);
+}
+
+.hint {
+  margin-top: 12px;
+  padding: 14px 16px;
+  border-radius: 14px;
+  background: rgba(255, 239, 205, 0.85);
+  border: 1px solid rgba(255, 193, 7, 0.5);
+  color: #1a1a1a;
+}
+
+.hint-list {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+  margin-top: 8px;
+}
+
+.hintButton {
+  border: none;
+  background: rgba(255, 255, 255, 0.9);
+  padding: 8px 12px;
+  border-radius: 10px;
+  cursor: pointer;
+  font-weight: 600;
+  transition: transform 0.12s ease, box-shadow 0.12s ease;
+}
+
+.hintButton:hover {
+  transform: translateY(-1px);
+  box-shadow: 0 8px 16px rgba(0, 0, 0, 0.12);
+}
+
+@keyframes pulse {
+  0% {
+    transform: scale(0.92);
+    box-shadow: 0 0 0 0 rgba(76, 175, 80, 0.5);
+  }
+  50% {
+    transform: scale(1.06);
+    box-shadow: 0 0 0 14px rgba(76, 175, 80, 0);
+  }
+  100% {
+    transform: scale(0.92);
+    box-shadow: 0 0 0 0 rgba(76, 175, 80, 0);
   }
 }
